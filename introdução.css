@@ -159,6 +159,10 @@ li > a:hover{
     margin-top: 40px;    
 }
 
+.content .imgtabela{
+    width: 900px;
+}
+
 .content img{
     width: 600px;
     height: auto;
@@ -166,6 +170,7 @@ li > a:hover{
     margin: auto;
     display: block;
 }
+
 
 /* Estilo da paginação */
 .pagination {
@@ -299,4 +304,75 @@ h3.highlight {
 
 h3.highlight span {
     color: #4F378B; /* Roxo escuro para um bom contraste */
+}
+
+/* Ajustes para telas de até 780px */
+@media only screen and (max-width: 780px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -250px; /* A barra lateral começa fora da tela */
+        width: 250px;
+        height: 100vh;
+        transition: left 0.3s ease-in-out; /* Transição suave ao abrir e fechar */
+        z-index: 100; /* Certifique-se de que a sidebar fique acima do conteúdo */
+    }
+
+    /* O conteúdo principal deve ter margem à esquerda quando a sidebar estiver visível */
+    .content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease-in-out;
+    }
+
+    /* Estilos para o ícone do menu de hambúrguer */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 101; /* Para garantir que o ícone fique acima de outros elementos */
+    }
+
+    .hamburger .bar {
+        width: 30px;
+        height: 5px;
+        background-color: white;
+        margin: 5px 0;
+        transition: all 0.3s;
+    }
+
+    /* Barra lateral oculta */
+    .sidebar ul {
+        display: none; /* Esconde a lista de navegação quando o menu está fechado */
+    }
+
+    .sidebar.open {
+        left: 0; /* Abre a barra lateral */
+    }
+
+    .content.open {
+        margin-left: 250px; /* Ajusta o conteúdo quando a barra lateral está aberta */
+    }
+}
+
+/* Quando a barra lateral está aberta, o conteúdo central se ajusta */
+@media only screen and (max-width: 780px) {
+    .sidebar.open .hamburger .bar:nth-child(1) {
+        transform: rotate(45deg);
+        position: relative;
+        top: 8px;
+    }
+    
+    .sidebar.open .hamburger .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .sidebar.open .hamburger .bar:nth-child(3) {
+        transform: rotate(-45deg);
+        position: relative;
+        top: -8px;
+    }
+
+    .sidebar.open ul {
+        display: block; /* Exibe a lista de navegação quando o menu está aberto */
+    }
 }
